@@ -15,14 +15,22 @@
     <style>
         /*
             EX1) Write a selector to target the main title of the page
-            EX2) Write a selector to target every children of the navbar
+            EX2) Write a selector to target every children of the navbar(sol is .nav> *)
             EX3) Write a selector to target the "continue reading..." inside the jumbotron
-            EX4) Write a selector to target the first blogpost
+            EX4) Write a selector to target the first blogpost(sol is  .blog-post:nth-of-type(1){
+            color:rgb(72, 110, 72);
+        })
             EX5) Write a selector to target the "even" links in the navbar
             EX6) Write a selector to target the last blog post
-            EX7) Write a selector to target all the li into the sidebar
-            EX8) Write a selector to target the second post author
-            EX9) Write a selector to target the "back to top" link
+            EX7) Write a selector to target all the li into the sidebar( sol is  aside ol > li   {
+              background-color: rgb(32, 22, 22);
+                 })
+            EX8) Write a selector to target the second post author(  .blog-post:nth-of-type(3){
+            color: red;
+        })
+            EX9) Write a selector to target the "back to top" link( footer > p:last-child > a{
+                   background-color: rgb(215, 228, 240);
+                   })
             EX10) Write a selector to target the footer
         */ 
     </style>
@@ -54,11 +62,13 @@
         nav a{
             background-color: aqua;
         }
-         .jumbotron p>a{
-            color: red;
+         .jumbotron a{
+            color: red !important;
         }
-         .blog-m {
-            background-color: red;
+        .blog-post:nth-of-type(1){
+            color:rgb(72, 110, 72);
+        }
+
         }
         a:nth-child(2n){
             background-color: black;
@@ -66,12 +76,17 @@
         ol li a{
             background-color:green;
         }
-        h2 + p a{
-            color: indigo;
+        
+        .blog-post:nth-of-type(3){
+            color: red;
+        }
         }
         .blog-footer{
             background-color: green;
         }
+        footer > p:last-child > a{
+                   background-color: rgb(215, 228, 240);
+                   }
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
@@ -188,7 +203,7 @@
                 </h3>
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title">Sample blog post</h2>
+                    <h2 class="blog-post-title feauture">Sample blog post</h2>
                     <p class="blog-post-meta authors" >January 1, 2014 by <a href="#" >Mark</a></p>
 
                     <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap.
@@ -233,7 +248,7 @@
                 </div><!-- /.blog-post -->
 
                 <div class="blog-post">
-                    <h2 class="blog-post-title">Another blog post</h2>
+                    <h2 class="blog-post-title feature">Another blog post</h2>
                     <p class="blog-post-meta authors">December 23, 2013 by <a href="#">Jacob</a></p>
 
                     <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus
@@ -251,7 +266,7 @@
                 </div><!-- /.blog-post -->
 
                 <div class="blog-post last-blog">
-                    <h2 class="blog-post-title">New feature</h2>
+                    <h2 class="blog-post-title feature">New feature</h2>
                     <p class="blog-post-meta authors">December 14, 2013 by <a href="#">Chris</a></p>
 
                     <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
@@ -328,6 +343,7 @@
     /*
         JS Exercises
         EX11) Write a function to add a new link into the navbar
+        
         EX12) Write a function to remove the Search Looking class item
         EX13) Write a function to change the background of the jumbotron
         EX14) Write a function to change the color of the main title
