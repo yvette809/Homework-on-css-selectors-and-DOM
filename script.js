@@ -9,7 +9,8 @@
  navP.appendChild(newA);*/
 
 }
- function to add a new link into the navbar
+ //function to add a new link into the navbar
+ // sol2
        function addLinkToNav() {
            let navs = document.querySelector('nav:last-child');
            let theLink = document.createElement('a');
@@ -18,6 +19,17 @@
          navs.append(theLink);
            }
            addLinkToNav();
+           // sol 3
+
+           function newLinkTONavbar(text) {
+            let parent = document.querySelector (".nav-scroller .nav")
+            let link = document.createElement('a')
+            link.href ="#"
+            link.className="p-2 text-muted"
+            link.innerText=text
+            parent.appendChild(link)
+    
+        }
 
 //exercise 12
 // sol 1 
@@ -86,12 +98,37 @@ function columnSize(){
 
 
  // exercise 17
+ function trimPost() {
+ let post = document.querySelectorAll(".blog-post")
+
+
+    post.forEach(element => {
+      let pars=  element.getElementsByTagName("p")
+        const length =150;
+        for (let i=1; i<pars.length; i++) {
+
+            if(pars[i].length<length) {
+                length=length-pars[i].length
+                pars[i].remove();
+
+            } else {
+                pars[1].innerText =  pars[i].innerText.substring(length)  
+            }
+
+        }
+
+
+
+
+    });
+
+}
 
 
 
 
  //exercise 18
- window.onload = function addNew (){
+/* window.onload = function addNew (){
      
      let newDiv = document.createElement('div')
      newDiv.classList.add('blog-post')
@@ -102,24 +139,86 @@ function columnSize(){
 
  }
  let newer = document.querySelector('.newer')
- newer.onClick =  addNew()
+ newer.onClick =  addNew()*/
+ // sol 
+ function addNewPost(){
+    let blogMain = document.querySelector(".blog-main")
+    console.log(blogMain)
+    let divBlog = document.createElement("div")
+    divBlog.classList = "blog-post"
+    let h2 = document.createElement("h2")
+    h2.classList="blog-post-tittle"
+    h2.innerText = "New Blog Post"
 
+    divBlog.appendChild(h2)
+    blogMain.appendChild(divBlog)
+
+}
+    //sol 3
+    function attachToNewer(titleText) {
+        let parent=document.querySelector(".blog-main")
+
+        console.log (parent)
+        let element = document.querySelector(".blog-pagination");
+        let child = element.getElementsByTagName("a")[1]
+        child.classList.remove('disabled')
+        child.addEventListener('click', function() {
+            let newPost = document.createElement('div')
+            newPost.className='blog-post';
+            let title = document.createElement('h2')
+            title.className ="blog-post-title"
+            title.innerText = titleText;
+            newPost.appendChild(title)
+            parent.insertBefore(newPost, element)
+
+
+        })
+    }
 
  // exercise 19
- window.onload = function removeLast (){
+/* window.onload = function removeLast (){
 let lastPost = document.querySelector('.last-blog')
 let oldButton = document.querySelector('.older')
 oldButton.appendChild(lastPost)
 oldButton.removeChild(lastPost)
 
  }
- oldButton.onClick = removeLast();
+ oldButton.onClick = removeLast();*/
+
+ // sol 2
+ let element = document.querySelector(".blog-pagination");
+ let olderBtn = element.getElementsByTagName("a")[0]
+ let posts=document.querySelectorAll(".blog-post")
+ console.log(posts[posts.length-1])
+ olderBtn.addEventListener('click', function() {
+     alert(posts[posts.length-1])
+     posts[posts.length-1].remove()
+ })
 
  //exercise 20
  window.onload = function alertCreated (){
      let author = document.querySelectorAll('.authors')
      for (let i = 0; i<author.length; i++){
-         alert(author[i])
+         author[i].addEventListener('mouseover',function(){
+             alert(author[i]).innerHTML
+         })
      }
  }
- author.addEventListener('mouseover', alertCreated)
+ //sol 2
+ let author = document.querySelectorAll('.blog-post-meta > a');
+ for (i = 0; i < author.length; i++) {
+ author[i].addEventListener('mouseover', message);
+ }
+function message() {
+ alert(author); 
+ }
+//  message();
+
+// sol 3 most preferable
+const authors =document.querySelectorAll('.blog-post-meta a')
+        authors.forEach(author => {
+            author.addEventListener('mouseover', function() {
+                alert(author.innerText)
+                console.log(author.innerText)
+            })
+        })
